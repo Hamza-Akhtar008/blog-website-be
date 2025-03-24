@@ -16,11 +16,12 @@ connectDB();
 app.use("/api", articleRoutes); // Use article routes
 app.use("/api/categories", categoryRoutes);
 app.use("/api/trending", trendroutes);
-cron.schedule("0 */6 * * *", async () => {
+cron.schedule("0 */4 * * *", async () => {
   console.log("⏳ Running fetchTrendingNews...");
-  fetchTrendingNews();
+  await fetchTrendingNews();
   console.log("✅ fetchTrendingNews completed.");
 });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
